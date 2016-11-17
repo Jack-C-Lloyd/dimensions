@@ -41,9 +41,8 @@ public class Main {
         Amount<Length> tripDistance = Amount.valueOf(400, KILO(METRE)); // 400 km
         Amount<Money> tripCost = tripDistance.divide(carMileage).times(
                 petrolPrice).to(USD);
-        // Displays cost.
-        System.out.println("Trip cost = " + tripCost + " ("
-                + tripCost.to(EUR) + ")");
+
+        System.out.println("Trip cost = " + tripCost + " (" + tripCost.to(EUR) + ")");
 
         /*
         1. Write code using the same methods as above to calculate the cost of a car journey
@@ -52,8 +51,8 @@ public class Main {
          */
 
         /*
-        2. Convert the NonSI unit lbf.s/lb of specific impulse (impulse per pound of fuel) to
-        its SI equivalent N.s/kg. The specific impulse of the Orbiter was 310 lbf.s/lb.
+        2. Convert a value in the SI unit of specific impulse N.s/kg (impulse per kg of fuel) to
+        its US equivalent lbf.s/lb. The specific impulse of the Orbiter was 3041 N.s/kg.
          */
 
     }
