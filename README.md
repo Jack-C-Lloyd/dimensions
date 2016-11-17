@@ -56,18 +56,18 @@ out the result.
 You'll probably have heard of the Mars Climate Orbiter disaster [3], which was caused by a 
 dimension conversion error. Programmers at NASA treated a SI value coming from code written
 in Europe as a US measure (miles, tons and so on are still used in the US). The data that 
-caused the error was the measure of *impulse*, which is a measure of `force . time`. Rather 
+caused the error was the measure of *impulse*, which is a measure of *force* multiplied by *time*. Rather 
 than calculating the impulse of the whole spaceship, it's more useful to know the *specific impulse*, 
-which is the impulse per unit of fuel. The Imperial measure of force is `lbf` ("pounds of force") so
-NASA was measuring specific impulse as `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
-The SI unit of force is the `Newton`, (`N`) so the European programmers were expecting 
-specific impulse to be in units of `N.s/kg`.
+which is the *impulse per unit of fuel*. The Imperial measure of force is `lbf` ("pounds of force") so
+NASA was expecting the specific impulse to be in `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
+The SI unit of force is the `Newton`, (`N`) so the European programmers code the 
+specific impulse in units of `N.s/kg`.
 
-Start by creating an `Amount` with the right dimensions to represent the US value.
+Start by creating an `Amount` with the right dimensions to represent the SI value.
 There are two ways to do this. The library can parse strings that represent values,
-so you could do this:
+so you could just do this:
 
-    Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb"); 
+    Amount<?> orbiterImpulse = Amount.valueOf("3041 lbf*s/lb"); 
     
 There is a more flexible way though, using the version of `Amount.valueOf` that takes a numeric 
 value (either a `long` or a `double`) and the `Unit` it is measured in; this is the approach 
@@ -80,8 +80,8 @@ Then we create a specific amount of 20 mpg with the `valueOf` method:
     
     Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 miles per gallon.
         
-The Mars Orbiter had a specific impule of `310 lbf.s/ln`. Use the `unitsofmeasurement` API to 
-convert this value into the SI unit `N.s/kg`, saving $327 million and a lot of red faces.
+The Mars Orbiter had a specific impule of `3041 N.s/kg`. Use the `unitsofmeasurement` API to 
+convert this into a value using the US unit `lbf.s/lb`, saving $327 million and a lot of red faces.
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 
