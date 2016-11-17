@@ -1,4 +1,4 @@
-package CI346;
+package CI346.dimensions;
 
 import org.jscience.economics.money.Currency;
 import org.jscience.economics.money.Money;
@@ -54,8 +54,8 @@ public class Main {
         //Amount<?> orbiterImpulse = Amount.valueOf(310, POUND_FORCE.times(SECOND).divide(POUND));
         System.out.println(orbiterImpulse.to(NEWTON.times(SECOND).divide(KILO(GRAM))));
 
-        Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
-        //Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
+        //Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
+        Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
         System.out.println(orbiterImpulse2.to(POUND_FORCE.times(SECOND).divide(POUND)));
 
         //Amount<?> orbiterThrust = Amount.valueOf(440, NEWTON);
