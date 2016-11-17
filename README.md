@@ -27,19 +27,23 @@ Clone the repository with the following command:
 
     $ git clone https://github.com/jimburton/dimensions.git
 
-This tiny project uses maven to download the `unitsofmeasurement` API. So if you're using Eclipse,
-import the repository as a maven project. IntelliJ can open maven projects without any bother.
-Maven downloads the JScience library for you but you want the sources as well, so 
-that you can read the docs. In Eclipse, you can tell maven to do this in 
-*Window / Preferences / Maven*. In ItelliJ, open the Maven Projects tool window,
-find the button that lets you execute a maven goal and execute these goals:
+This tiny project uses maven to download the `unitsofmeasurement` API. So if you're using Eclipse
+you need the maven plugin, which will allow you to import the repository as a maven project. 
+IntelliJ can open maven projects without any bother. Maven downloads the JScience library for you 
+but you want the sources as well, so that you can read the docs. In Eclipse, you can tell maven to do this in 
+*Window / Preferences / Maven*. In ItelliJ, open the Maven Projects tool window, find the button that lets 
+you execute a maven goal and execute these goals:
 
     mvn dependency:sources
     mvn dependency:resolve -Dclassifier=javadoc
     
-One of the most important classes you need to understand is `Amount`. Read the docs for it 
+The first class you need to understand is `Amount`. Read the docs for it 
 in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html).
-Each amount has particular unit -- SI units (e.g. metres and kolograms) are defined [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains an example of using the API. It calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Read `Main.java` and run it to get an example of how units and amount are used.
+Each amount has particular unit -- SI units (e.g. metres and kolograms) are defined [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) 
+are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains 
+an example of using the API taken from the docs. It calculates the fuel cost of a 400 mile journey for 
+a US tourist in Europe. Read `Main.java` and run it to get an example of how units and amounts are used
+and how to convert an amount from one unit to another.
 
 ## Do you know the way to San Jose?
 
