@@ -27,7 +27,6 @@ public class Main {
         // Use currency symbols instead of ISO-4217 codes.
         UnitFormat.getInstance().label(USD, "$"); // Use "$" symbol instead of currency code ("USD")
         UnitFormat.getInstance().label(EUR, "€"); // Use "€" symbol instead of currency code ("EUR")
-        UnitFormat.getInstance().label(GBP, "£"); // Use "€" symbol instead of currency code ("EUR")
 
         // Sets exchange rates.
         Currency.setReferenceCurrency(USD);
