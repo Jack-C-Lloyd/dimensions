@@ -52,34 +52,12 @@ public class Main {
         British currency (see the Euros example).
          */
 
-        Amount<Length> tripDistance2 = Amount.valueOf(2940, MILE);
-        Amount<Money> tripCost2 = tripDistance2.divide(carMileage).times(petrolPrice).to(GBP);
-
-        System.out.println("NYC to San Jose is going to cost you about " + tripCost2);
-
         /*
         2. Convert a value in the SI unit of specific impulse N.s/kg (impulse per kg of fuel) to
         its US equivalent lbf.s/lb. The specific impulse of the Orbiter was 3041 N.s/kg. Just to
         check that this all works, what happens if you try to convert 3041 N.s/kg to an incompatible
         unit such as lbf.s ?
          */
-
-        //Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
-        Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
-        System.out.println(orbiterImpulse2.to(POUND_FORCE.times(SECOND).divide(POUND)));
-
-        // (13913.994075448802 ± 2.7E-12) lbf·s/lb
-        //Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb");
-        //Amount<?> orbiterImpulse = Amount.valueOf(310, POUND_FORCE.times(SECOND).divide(POUND));
-        //System.out.println(orbiterImpulse.to(NEWTON.times(SECOND).divide(KILO(GRAM))));
-
-        //
-
-
-        //Amount<?> orbiterThrust = Amount.valueOf(440, NEWTON);
-        //System.out.println(orbiterThrust.to(KILOGRAM_FORCE));
-
-
 
     }
 }
