@@ -21,14 +21,14 @@ fragment written in some programming language."
 
 A specification for dimension types in Java has been accepted [2], so these will
 be available in a future version of the language. We can use them already, using 
-the "reference implementation" from JScience.org, as this lab exercise does.
+the "reference implementation" from JScience.org, as well as the `javax.measure` API.
 
 Clone the repository with the following command:
 
     $ git clone https://github.com/jimburton/dimensions.git
 
-It uses maven to download the `unitsofmeasurement` API. So if you're using Eclipse,
-import it as a maven project. IntelliJ can open maven projects without any bother.
+This tiny project uses maven to download the `unitsofmeasurement` API. So if you're using Eclipse,
+import the repository as a maven project. IntelliJ can open maven projects without any bother.
 Maven downloads the JScience library for you but you want the sources as well, so 
 that you can read the docs. In Eclipse, you can tell maven to do this in 
 *Window / Preferences / Maven*. In ItelliJ, open the Maven Projects tool window,
@@ -36,24 +36,31 @@ find the button that lets you execute a maven goal and execute these goals:
 
     mvn dependency:sources
     mvn dependency:resolve -Dclassifier=javadoc
+    
+Two of the important classes you need to understand are `Amount` and `Unit`. Read the docs
+for them in your IDE of [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html) 
+and [here](http://jscience.org/api/javax/measure/unit/Unit.html). 
 
 ## Do you know the way to San Jose?
 
 The `Main` class contains an example of using the `unitsofmeasurement` API. It
 calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Use
 the same ideas to calculate the cost of a journey from New York to San Jose
-(google the distance) and convert it to Pounds Sterling for your British users.
+(google the distance by road) and convert it to Pounds Sterling for your British 
+users.
 
 ## It's not Rocket Science
 
 You'll have heard of the Mars Climate Orbiter disaster [3], which was caused by a 
-dimension conversion error dimension. Programmers at NASA treated a SI (or metric) 
+dimension conversion error. Programmers at NASA treated a SI (or metric) 
 value as an Imperial measure (miles, tons and so on, still used in the US). The
 data that caused the error was the measure of *impulse*, which is a measure of 
-`force . time / weight`. The Imperial measure of force is `lbf` ("pounds of force")
-so NASA was measuring impulse as `lbf.s/ton`. The SI unit of force is the `Newton`,
-(`N`) so the European programmers were expecting impulse to be in units of `N.s/kg`.
-
+`force . time`. Rather than calculating the impulse of the whole spaceship, it's more
+useful to know the *specific impulse*, which is the impulse per unit of fuel. 
+The Imperial measure of force is `lbf` ("pounds of force") so NASA was measuring specific 
+impulse as `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
+The SI unit of force is the `Newton`, (`N`) so the European programmers were expecting 
+specific impulse to be in units of `N.s/kg`.
 
 
 Start by creating an `Amount` with the right dimensions to represent the Imperial value.
