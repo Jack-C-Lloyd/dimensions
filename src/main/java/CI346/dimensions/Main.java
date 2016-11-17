@@ -47,7 +47,7 @@ public class Main {
         1. Write code using the same methods as above to calculate the cost of a car journey
         from New York to San Jose in dollars, and convert it to British currency before printing
         out the result. You'll need to check the exchange rate for Sterling, i.e.
-        how many pounds you get for one dollar, and set the exchange rate in the class representing
+        how many dollars you get for one pound, and set the exchange rate in the class representing
         British currency (see the Euros example).
          */
 
