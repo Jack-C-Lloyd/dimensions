@@ -83,7 +83,8 @@ Then we create an amount of 20 mpg with the `valueOf` method:
     Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 miles per gallon.
         
 The Mars Orbiter had a specific impulse of `3041 N.s/kg`. Convert this 
-into a value using the US unit `lbf.s/lb`, saving $327 million and a lot of red faces.
+into a value using the US unit `lbf.s/lb`, saving $327 million and a lot of red faces. What happens 
+if you try to convert to an incompatible unit, such as `lbf.s`? 
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 
