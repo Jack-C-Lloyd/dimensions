@@ -37,15 +37,14 @@ find the button that lets you execute a maven goal and execute these goals:
     mvn dependency:sources
     mvn dependency:resolve -Dclassifier=javadoc
     
-Two of the important classes you need to understand are `Amount` and `Unit`. Read the docs
-for them in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html) 
-and [here](http://jscience.org/api/javax/measure/unit/Unit.html). SI
-units (e.g. metres and kolograms) are defined [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains an example of using the API. It calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Read `Main.java` and run it to get an example of how units and amount are used.
+One of the most important classes you need to understand is `Amount`. Read the docs for it 
+in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html).
+Each amount has particular unit -- SI units (e.g. metres and kolograms) are defined [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains an example of using the API. It calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Read `Main.java` and run it to get an example of how units and amount are used.
 
 ## Do you know the way to San Jose?
 
 Add code to `Main.java` to calculate the fuel cost of a car journey from New York to San Jose
-(google the distance by road) and convert it to Pounds Sterling for your British users and print 
+(google the distance by road), convert it to Pounds Sterling for your British users and print 
 out the result.
 
 ## It's not Rocket Science
@@ -66,17 +65,19 @@ so you could do this:
 
     Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb"); 
     
-There is a more flexible way though, using the version of `valueOf` that takes a numeric 
+There is a more flexible way though, using the version of `Amount.valueOf` that takes a numeric 
 value (either a `long` or a `double`) and the `Unit` it is measured in; this is the approach 
-taken in the code provided for car journeys. In that code we made a unit of *miles per gallon* 
-then a specific amount of 20 mpg like this:
+taken in the code provided for car journeys. In that code we made a new unit by combining `MILE`
+and `GALLON_LIQUID_US`. This gave us a unit representing *miles per gallon*: 
+    
+    Unit<?> mpg = MILE.divide(GALLON_LIQUID_US); 
 
-    Unit<?> mpg = MILE.divide(GALLON_LIQUID_US);
-    Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 mi/gal.
+Then we create a specific amount of 20 mpg with the `valueOf` method:
+    
+    Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 miles per gallon.
         
-Have a look at the methods in the `Unit` class for other ways of combining them. The Mars Orbiter
-had a specific impule of `310 lbf.s/ln`. Use the `unitsofmeasurement` API to convert this value 
-into `N.s/kg`, saving $327 million and a lot of red faces.
+The Mars Orbiter had a specific impule of `310 lbf.s/ln`. Use the `unitsofmeasurement` API to 
+convert this value into the SI unit `N.s/kg`, saving $327 million and a lot of red faces.
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 
