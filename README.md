@@ -38,52 +38,45 @@ find the button that lets you execute a maven goal and execute these goals:
     mvn dependency:resolve -Dclassifier=javadoc
     
 Two of the important classes you need to understand are `Amount` and `Unit`. Read the docs
-for them in your IDE of [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html) 
-and [here](http://jscience.org/api/javax/measure/unit/Unit.html). 
+for them in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html) 
+and [here](http://jscience.org/api/javax/measure/unit/Unit.html). SI
+units (e.g. metres and kolograms) are defined [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains an example of using the API. It calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Read `Main.java` and run it to get an example of how units and amount are used.
 
 ## Do you know the way to San Jose?
 
-The `Main` class contains an example of using the `unitsofmeasurement` API. It
-calculates the fuel cost of a 400 mile journey for a US tourist in Europe. Use
-the same ideas to calculate the cost of a journey from New York to San Jose
-(google the distance by road) and convert it to Pounds Sterling for your British 
-users.
+Add code to `Main.java` to calculate the fuel cost of a car journey from New York to San Jose
+(google the distance by road) and convert it to Pounds Sterling for your British users and print 
+out the result.
 
 ## It's not Rocket Science
 
-You'll have heard of the Mars Climate Orbiter disaster [3], which was caused by a 
-dimension conversion error. Programmers at NASA treated a SI (or metric) 
-value as an Imperial measure (miles, tons and so on, still used in the US). The
-data that caused the error was the measure of *impulse*, which is a measure of 
-`force . time`. Rather than calculating the impulse of the whole spaceship, it's more
-useful to know the *specific impulse*, which is the impulse per unit of fuel. 
-The Imperial measure of force is `lbf` ("pounds of force") so NASA was measuring specific 
-impulse as `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
+You'll probably have heard of the Mars Climate Orbiter disaster [3], which was caused by a 
+dimension conversion error. Programmers at NASA treated a SI value coming from code written
+in Europe as a US measure (miles, tons and so on are still used in the US). The data that 
+caused the error was the measure of *impulse*, which is a measure of `force . time`. Rather 
+than calculating the impulse of the whole spaceship, it's more useful to know the *specific impulse*, 
+which is the impulse per unit of fuel. The Imperial measure of force is `lbf` ("pounds of force") so
+NASA was measuring specific impulse as `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
 The SI unit of force is the `Newton`, (`N`) so the European programmers were expecting 
 specific impulse to be in units of `N.s/kg`.
 
-
-Start by creating an `Amount` with the right dimensions to represent the Imperial value.
+Start by creating an `Amount` with the right dimensions to represent the US value.
 There are two ways to do this. The library can parse strings that represent values,
 so you could do this:
 
     Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb"); 
     
 There is a more flexible way though, using the version of `valueOf` that takes a numeric 
-value (either a `long` or a `double`) and the `Unit` it is measured in. Non-SI (e.g. Imperial)
-units are defined here, while SI units are defined here. The `Unit` class comes with 
-methods to make compound units. For instance, accelleration is measured in `m / s^2`, which 
-we can create a `Unit` for: 
+value (either a `long` or a `double`) and the `Unit` it is measured in; this is the approach 
+taken in the code provided for car journeys. In that code we made a unit of *miles per gallon* 
+then a specific amount of 20 mpg like this:
 
-    Unit<?> acc = METRE.divide(SECOND.pow(2));
-    
-Then we can make a `Value` representing acceleration at gravitational acceleration on Earth:
-    
-    Amount<?> g = Amount.valueOf(9.78, acc); 
-
-The impulse of the orbiter as it approached Mars was apparently about `310 lbf.s/ton`.
-Use the `unitsofmeasurement` API to convert this value into `N.s/kg`, saving $327 
-million and a lot of red faces.
+    Unit<?> mpg = MILE.divide(GALLON_LIQUID_US);
+    Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 mi/gal.
+        
+Have a look at the methods in the `Unit` class for other ways of combining them. The Mars Orbiter
+had a specific impule of `310 lbf.s/ln`. Use the `unitsofmeasurement` API to convert this value 
+into `N.s/kg`, saving $327 million and a lot of red faces.
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 
