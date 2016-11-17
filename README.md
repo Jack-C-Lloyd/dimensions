@@ -78,7 +78,7 @@ and `GALLON_LIQUID_US`. This gave us a unit representing *miles per gallon*:
     
     Unit<?> mpg = MILE.divide(GALLON_LIQUID_US); 
 
-Then we create a specific amount of 20 mpg with the `valueOf` method:
+Then we create an amount of 20 mpg with the `valueOf` method:
     
     Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 miles per gallon.
         
