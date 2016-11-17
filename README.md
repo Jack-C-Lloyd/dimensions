@@ -9,8 +9,8 @@ else, and what type of money value it returns?
 
 The need for *dimension types* is explained by A.J. Kennedy as follows [1] 
 
-"Dimensions are to science what types are to programming. In science and en-
-gineering, dimensional consistency provides a first check on the correctness of
+"Dimensions are to science what types are to programming. In science and engineering, 
+dimensional consistency provides a first check on the correctness of
 an equation or formula, just as in programming the typability of a program or
 program fragment eliminates one possible reason for program failure.
 What then of dimensions in programming? After all, the writing of a scientific
@@ -43,15 +43,33 @@ You'll have heard of the Mars Climate Orbiter disaster [3], which was caused by 
 dimension conversion error dimension. Programmers at NASA treated a SI (or metric) 
 value as an Imperial measure (miles, tons and so on, still used in the US). The
 data that caused the error was the measure of *impulse*, which is a measure of 
-`force * time / weight`. The Imperial measure of force is `lbf` ("pounds of force")
-so NASA was measuring impulse as `lbf*s/ton`. The SI unit of force is the `Newton`,
-(`N`) so the European programmers were expecting impulse to be in units of `N*s/kg`.
+`force . time / weight`. The Imperial measure of force is `lbf` ("pounds of force")
+so NASA was measuring impulse as `lbf.s/ton`. The SI unit of force is the `Newton`,
+(`N`) so the European programmers were expecting impulse to be in units of `N.s/kg`.
 
-The impule of the orbiter as it approached Mars was apparently about 310 lbf*s/ton.
-Use the `unitsofmeasurement` API to convert this value into `N*s/ton`, saving $327 
+
+
+Start by creating an `Amount` with the right dimensions to represent the Imperial value.
+There are two ways to do this. The library can parse strings that represent values,
+so you could do this:
+
+    Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb"); 
+    
+There is a more flexible way though, using the version of `valueOf` that takes a numeric 
+value (either a `long` or a `double`) and the `Unit` it is measured in. Non-SI (e.g. Imperial)
+units are defined here, while SI units are defined here. The `Unit` class comes with 
+methods to make compound units. For instance, accelleration is measured in `m / s^2`, which 
+we can create a `Unit` for: 
+
+    Unit<?> acc = METRE.divide(SECOND.pow(2));
+    
+Then we can make a `Value` representing acceleration at gravitational acceleration on Earth:
+    
+    Amount<?> g = Amount.valueOf(9.78, acc); 
+
+The impulse of the orbiter as it approached Mars was apparently about `310 lbf.s/ton`.
+Use the `unitsofmeasurement` API to convert this value into `N.s/kg`, saving $327 
 million and a lot of red faces.
-
-
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 [2] JSR 363: https://github.com/unitsofmeasurement/unit-api
