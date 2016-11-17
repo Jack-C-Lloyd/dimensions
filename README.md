@@ -69,10 +69,10 @@ Start by creating an `Amount` with the right dimensions to represent the SI valu
 There are two ways to do this. The library can parse strings that represent values,
 so you could just do this:
 
-    Amount<?> orbiterImpulse = Amount.valueOf("3041 lbf*s/lb"); 
+    Amount<?> orbiterImpulse = Amount.valueOf("3041 N*s/kg"); 
     
 That string can't be checked by the compiler though, and the parser doesn't understand all units you might 
-need. There is a more flexible way, using the version of `Amount.valueOf` that takes a numeric 
+need. There is a safer and more flexible way, using the version of `Amount.valueOf` that takes a numeric 
 value (either a `long` or a `double`) and the `Unit` it is measured in; this is the approach 
 taken in the code provided for car journeys. In that code we made a new unit by combining `MILE`
 and `GALLON_LIQUID_US`. This gave us a unit representing *miles per gallon*: 
