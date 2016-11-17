@@ -28,7 +28,14 @@ Clone the repository with the following command:
     $ git clone https://github.com/jimburton/dimensions.git
 
 It uses maven to download the `unitsofmeasurement` API. So if you're using Eclipse,
-import it as a maven project. 
+import it as a maven project. IntelliJ can open maven projects without any bother.
+Maven downloads the JScience library for you but you want the sources as well, so 
+that you can read the docs. In Eclipse, you can tell maven to do this in 
+*Window / Preferences / Maven*. In ItelliJ, open the Maven Projects tool window,
+find the button that lets you execute a maven goal and execute these goals:
+
+    mvn dependency:sources
+    mvn dependency:resolve -Dclassifier=javadoc
 
 ## Do you know the way to San Jose?
 
