@@ -86,5 +86,7 @@ Use the `unitsofmeasurement` API to convert this value into `N.s/kg`, saving $32
 million and a lot of red faces.
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
+
 [2] JSR 363: https://github.com/unitsofmeasurement/unit-api
+
 [3] https://en.wikipedia.org/wiki/Mars_Climate_Orbiter
