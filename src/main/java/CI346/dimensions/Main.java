@@ -5,6 +5,7 @@ import org.jscience.economics.money.Money;
 import org.jscience.physics.amount.Amount;
 
 import javax.measure.quantity.Length;
+import javax.measure.unit.Unit;
 import javax.measure.unit.UnitFormat;
 
 import static javax.measure.unit.NonSI.*;
@@ -18,7 +19,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("");
         System.out.println("Money/Currencies");
         ///////////////////////////////////////////////////////////////////////
         // Calculates the cost of a car trip in Europe for an American tourist.
@@ -32,34 +32,53 @@ public class Main {
         // Sets exchange rates.
         Currency.setReferenceCurrency(USD);
         EUR.setExchangeRate(1.07); // 1.0 € = 1.07 $
+        GBP.setExchangeRate(1.25);
 
         // Calculates trip cost.
-        Amount<?> carMileage = Amount.valueOf(20, MILE
-                .divide(GALLON_LIQUID_US)); // 20 mi/gal.
+        Unit<?> mpg = MILE.divide(GALLON_LIQUID_US);
+        Amount<?> carMileage = Amount.valueOf(20, mpg); // 20 mi/gal.
         Amount<?> petrolPrice = Amount.valueOf(1.2, EUR.divide(LITRE)); // 1.2 €/L
 
         Amount<Length> tripDistance = Amount.valueOf(400, KILO(METRE)); // 400 km
-        Amount<Money> tripCost = tripDistance.divide(carMileage).times(
-                petrolPrice).to(USD);
-        // Displays cost.
-        System.out.println("Trip cost = " + tripCost + " ("
-                + tripCost.to(EUR) + ")");
+        Amount<Money> tripCost = tripDistance.divide(carMileage).times(petrolPrice).to(USD);
 
+        System.out.println("Trip cost = " + tripCost + " (" + tripCost.to(EUR) + ")");
 
-        //Convert the NonSI unit lbf.s of impulse (pounds of force per second) to
-        // its SI equivalent N.s (Newtons per second)
+        /*
+        1. Write code using the same methods as above to calculate the cost of a car journey
+        from New York to San Jose in dollars, and convert it to British currency before printing
+        out the result. You'll need to check the exchange rate for Sterling, i.e.
+        how many pounds you get for one dollar, and set the exchange rate in the class representing
+        British currency (see the Euros example).
+         */
+
+        Amount<Length> tripDistance2 = Amount.valueOf(2940, MILE);
+        Amount<Money> tripCost2 = tripDistance2.divide(carMileage).times(petrolPrice).to(GBP);
+
+        System.out.println("NYC to San Jose is going to cost you about " + tripCost2);
+
+        /*
+        2. Convert a value in the SI unit of specific impulse N.s/kg (impulse per kg of fuel) to
+        its US equivalent lbf.s/lb. The specific impulse of the Orbiter was 3041 N.s/kg. Just to
+        check that this all works, what happens if you try to convert 3041 N.s/kg to an incompatible
+        unit such as lbf.s ?
+         */
+
+        //Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
+        Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
+        System.out.println(orbiterImpulse2.to(POUND_FORCE.times(SECOND).divide(POUND)));
 
         // (13913.994075448802 ± 2.7E-12) lbf·s/lb
-        Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb");
+        //Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb");
         //Amount<?> orbiterImpulse = Amount.valueOf(310, POUND_FORCE.times(SECOND).divide(POUND));
-        System.out.println(orbiterImpulse.to(NEWTON.times(SECOND).divide(KILO(GRAM))));
+        //System.out.println(orbiterImpulse.to(NEWTON.times(SECOND).divide(KILO(GRAM))));
 
-        //Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
-        Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
-        System.out.println(orbiterImpulse2.to(POUND_FORCE.times(SECOND).divide(POUND)));
+        //
+
 
         //Amount<?> orbiterThrust = Amount.valueOf(440, NEWTON);
         //System.out.println(orbiterThrust.to(KILOGRAM_FORCE));
+
 
 
     }
