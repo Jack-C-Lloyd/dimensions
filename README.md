@@ -40,7 +40,7 @@ you execute a maven goal and execute these goals:
 
 The first class you need to understand is `Amount`. Read the docs for it 
 in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html).
-Each amount has particular unit -- SI units (e.g. metres and kolograms) are defined 
+Each amount has particular unit -- SI units (e.g. metres and kilograms) are defined 
 [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) 
 are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains 
 an example of using the API taken from the docs. It calculates the fuel cost of a 400 mile journey for 
