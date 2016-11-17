@@ -39,9 +39,8 @@ public class Main {
         Amount<?> petrolPrice = Amount.valueOf(1.2, EUR.divide(LITRE)); // 1.2 €/L
 
         Amount<Length> tripDistance = Amount.valueOf(400, KILO(METRE)); // 400 km
-        Amount<Money> tripCost = tripDistance.divide(carMileage).times(
-                petrolPrice).to(USD);
-        // Displays cost.
+        Amount<Money> tripCost = tripDistance.divide(carMileage).times(petrolPrice).to(USD);
+
         System.out.println("Trip cost = " + tripCost + " ("
                 + tripCost.to(EUR) + ")");
 
