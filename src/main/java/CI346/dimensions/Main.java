@@ -32,7 +32,6 @@ public class Main {
         // Sets exchange rates.
         Currency.setReferenceCurrency(USD);
         EUR.setExchangeRate(1.07); // 1.0 € = 1.07 $
-        GBP.setExchangeRate(1.25);
 
         // Calculates trip cost.
         Unit<?> mpg = MILE.divide(GALLON_LIQUID_US);
