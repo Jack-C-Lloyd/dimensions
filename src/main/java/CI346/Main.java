@@ -49,6 +49,18 @@ public class Main {
         //Convert the NonSI unit lbf.s of impulse (pounds of force per second) to
         // its SI equivalent N.s (Newtons per second)
 
+        // (13913.994075448802 ± 2.7E-12) lbf·s/lb
+        Amount<?> orbiterImpulse = Amount.valueOf("310 lbf*s/lb");
+        //Amount<?> orbiterImpulse = Amount.valueOf(310, POUND_FORCE.times(SECOND).divide(POUND));
+        System.out.println(orbiterImpulse.to(NEWTON.times(SECOND).divide(KILO(GRAM))));
+
+        Amount<?> orbiterImpulse2 = Amount.valueOf(3041, NEWTON.times(SECOND).divide(KILO(GRAM)));
+        //Amount<?> orbiterImpulse2 = Amount.valueOf("3041 N*s/kg");
+        System.out.println(orbiterImpulse2.to(POUND_FORCE.times(SECOND).divide(POUND)));
+
+        //Amount<?> orbiterThrust = Amount.valueOf(440, NEWTON);
+        //System.out.println(orbiterThrust.to(KILOGRAM_FORCE));
+
 
     }
 }
