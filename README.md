@@ -40,7 +40,7 @@ you execute a maven goal and execute these goals:
 
 The first class you need to understand is `Amount`. Read the docs for it 
 in your IDE or [here](http://jscience.org/api/org/jscience/physics/amount/package-summary.html).
-Each amount has particular unit -- SI units (e.g. metres and kilograms) are defined 
+Each amount has a particular unit -- SI units (e.g. metres and kilograms) are defined 
 [here](http://jscience.org/api/javax/measure/unit/SI.html), while non-SI units (including pounds, feet, etc) 
 are defined [here](http://jscience.org/api/javax/measure/unit/NonSI.html). The `Main` class contains 
 an example of using the API taken from the docs. It calculates the fuel cost of a 400 mile journey for 
@@ -60,7 +60,7 @@ dimension conversion error. Programmers at NASA treated a SI value coming from c
 in Europe as a US measure (miles, tons and so on are still used in the US). The data that 
 caused the error was the measure of *impulse*, which is a measure of *force* multiplied by *time*. Rather 
 than calculating the impulse of the whole spaceship, it's more useful to know the *specific impulse*, 
-which is the *impulse per unit of fuel*. The Imperial measure of force is `lbf` ("pounds of force") so
+which is the *impulse per unit of fuel*. The US measure of force is `lbf` ("pounds of force") so
 NASA was expecting the specific impulse to be in `lbf.s/lb` ("(pounds of force times seconds) divided by pounds"). 
 The SI unit of force is the `Newton`, (`N`) so the European programmers coded the 
 specific impulse in units of `N.s/kg`.
