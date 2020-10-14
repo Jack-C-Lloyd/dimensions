@@ -50,6 +50,18 @@ public class Main {
         British currency (see the Euros example).
          */
 
+        UnitFormat.getInstance().label(GBP, "£"); // Use "£" symbol instead of currency code ("GBP")
+
+        // Sets exchange rates.
+        Currency.setReferenceCurrency(GBP);
+        USD.setExchangeRate(0.77); // 1.0 $ = 0.77 £
+
+        Amount<?> petrolPriceUS = Amount.valueOf(0.668, USD.divide(LITRE)); // 0.668 $/L
+        Amount<Length> tripDistanceNYSJ = Amount.valueOf(2934.6, MILE); // 2934.6 mi
+        Amount<Money> tripCostNYSJ = tripDistanceNYSJ.divide(carMileage).times(petrolPriceUS).to(GBP);
+
+        System.out.println("Trip cost NY to SJ = " + tripCostNYSJ + " (" + tripCostNYSJ.to(USD) + ")");
+
         /*
         2. Convert a value in the SI unit of specific impulse N.s/kg (impulse per kg of fuel) to
         its US equivalent lbf.s/lb. The specific impulse of the Orbiter was 3041 N.s/kg. Just to
