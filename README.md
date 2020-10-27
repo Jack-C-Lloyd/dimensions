@@ -85,7 +85,14 @@ Then we create an amount of 20 mpg with the `valueOf` method:
         
 The Mars Orbiter had a specific impulse of `3041 N.s/kg`. Convert this 
 into a value using the US unit `lbf.s/lb`, saving $327 million and a lot of red faces. What happens 
-if you try to convert to an incompatible unit, such as `lbf.s`? 
+if you try to convert to an incompatible unit, such as `lbf.s`?
+
+# Question that relates to the assignment!
+
+This dimensions library relies heavily on *parametric polymorphism*. This is what makes it possible to
+parametrise one type with another and allows us to write code that works with types like, say, `Amount<T>`,
+where `T` is a type representing any quantity. How would you design a dimensions library like this one in an
+object-oriented language that lacks parametric polymorphism? What would be the drawbacks? 
 
 [1] https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-391.pdf
 
